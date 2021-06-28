@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;display=swap'>
+    <link rel="stylesheet" href="./style.css">
+    <title>Charts</title>
+</head>
+
+<body>
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="assets/vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+    <header id="header" class="fixed-top d-flex align-items-center  header-transparent ">
+        <div class="container d-flex align-items-center">
+
+            <div class="logo mr-auto">
+                <center>
+                    <h1 class="text-light"><a href="index.html"><u>Charts</u></a></h1>
+
+                    <p style="color: black;">.</p>
+                </center>
+            </div>
+
+            <script src="https://code.highcharts.com/highcharts.js"></script>
+            <script src="https://code.highcharts.com/modules/series-label.js"></script>
+            <script src="https://code.highcharts.com/modules/exporting.js"></script>
+            <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+
+            <figure class="highcharts-figure">
+                <div id="container"></div>
+                <p style="color: black;">.</p>
+                <marquee width="100%" direction="left" scrollamount="15" height="100px">
+                    <center>
+                        <p class="highcharts-description" style="font-size: 3rem; color: rgb(245, 247, 129);">
+                            <i>The above chart shows the weather state in Pune.</i>
+                        </p>
+                </marquee>
+                </center>
+            </figure>
+
+            <style>
+                .highcharts-description {
+                    color: rgb(240, 233, 233);
+                }
+
+                #container {
+                    height: 500px;
+                    width: 1230px;
+                    margin-top: 5%;
+                    margin-bottom: 10%;
+                    /* margin-right: 50%; */
+                    /* color: black; */
+
+                }
+            </style>
+            <script>
+                Highcharts.chart('container', {
+                    chart: {
+                        backgroundColor: '#fff',
+                        type: 'spline',
+                        cursor: 'pointer'
+                    },
+                    title: {
+                        text: 'Weather Forecast by G7'
+                    },
+                    subtitle: {
+                        text: 'Monthly Avrage Tempreture'
+                    },
+                    xAxis: {
+                        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Temperature'
+                        },
+                        labels: {
+                            formatter: function () {
+                                return this.value + '°';
+                            }
+                        }
+                    },
+                    tooltip: {
+                        crosshairs: true,
+                        shared: true
+                    },
+                    plotOptions: {
+                        spline: {
+                            marker: {
+                                radius: 4,
+                                lineColor: '#000',
+                                lineWidth: 1
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Pune',
+                        marker: {
+                            symbol: 'square'
+                        },
+                        data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, {
+                            y: 26.5,
+                            marker: {
+                                symbol: 'url(https://www.highcharts.com/samples/graphics/sun.png)'
+                            }
+                        }, 23.3, 18.3, 13.9, 9.6]
+
+
+                    }, {
+                        name: 'Hyderabad',
+                        marker: {
+                            // symbol: 'diamond'
+                        },
+                        data: [{
+                            y: 3.9,
+                            marker: {
+                                symbol: 'url(https://www.highcharts.com/samples/graphics/snow.png)'
+                            }
+
+                        }, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+                    }]
+
+                });
+
+            </script>
+            <!-- GAUGE PART STARTS -->
+
+            <style>
+                body {
+                    align-items: center;
+                    /* background-color: #30303d;  */
+                    color: #fff;
+                }
+
+                #chartdiv {
+                    width: 40%;
+                    height: 500px;
+
+
+
+                }
+            </style>
+
+            <!-- Resources -->
+            <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+            <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+            <script src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
+            <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+            <center>
+                <p style="color: white; transform: translateY(5rem); font-size: 50px;">Accuracy</p>
+            </center>
+            <p style="transform: translateY(17rem); margin-left: 600px; font-size: 1.4rem;">Here this graph represents the accuracy of our
+                PREDICTIONS in comparison to publised data.</p>
+            <!-- Chart code -->
+            <script>
+
+                am4core.ready(function () {
+
+                    // Themes begin
+                    am4core.useTheme(am4themes_dark);
+                    am4core.useTheme(am4themes_animated);
+                    // Themes end
+
+                    // create chart
+                    var chart = am4core.create("chartdiv", am4charts.GaugeChart);
+                    chart.innerRadius = am4core.percent(82);
+
+                    /**
+                     * Normal axis
+                     */
+
+                    var axis = chart.xAxes.push(new am4charts.ValueAxis());
+                    axis.min = 0;
+                    axis.max = 100;
+                    axis.strictMinMax = true;
+                    axis.renderer.radius = am4core.percent(80);
+                    axis.renderer.inside = true;
+                    axis.renderer.line.strokeOpacity = 1;
+                    axis.renderer.ticks.template.disabled = false
+                    axis.renderer.ticks.template.strokeOpacity = 1;
+                    axis.renderer.ticks.template.length = 10;
+                    axis.renderer.grid.template.disabled = true;
+                    axis.renderer.labels.template.radius = 40;
+                    axis.renderer.labels.template.adapter.add("text", function (text) {
+                        return text + "%";
+                    })
+
+                    /**
+                     * Axis for ranges
+                     */
+
+                    var colorSet = new am4core.ColorSet();
+
+                    var axis2 = chart.xAxes.push(new am4charts.ValueAxis());
+                    axis2.min = 0;
+                    axis2.max = 100;
+                    axis2.strictMinMax = true;
+                    axis2.renderer.labels.template.disabled = true;
+                    axis2.renderer.ticks.template.disabled = true;
+                    axis2.renderer.grid.template.disabled = true;
+
+                    var range0 = axis2.axisRanges.create();
+                    range0.value = 0;
+                    range0.endValue = 50;
+                    range0.axisFill.fillOpacity = 1;
+                    range0.axisFill.fill = colorSet.getIndex(0);
+
+                    var range1 = axis2.axisRanges.create();
+                    range1.value = 50;
+                    range1.endValue = 100;
+                    range1.axisFill.fillOpacity = 1;
+                    range1.axisFill.fill = colorSet.getIndex(2);
+
+                    /**
+                     * Label
+                     */
+
+                    var label = chart.radarContainer.createChild(am4core.Label);
+                    label.isMeasured = false;
+                    label.fontSize = 45;
+                    label.x = am4core.percent(50);
+                    label.y = am4core.percent(100);
+                    label.horizontalCenter = "middle";
+                    label.verticalCenter = "bottom";
+                    label.text = "50%";
+
+
+                    /**
+                     * Hand
+                     */
+
+                    var hand = chart.hands.push(new am4charts.ClockHand());
+                    hand.axis = axis2;
+                    hand.innerRadius = am4core.percent(20);
+                    hand.startWidth = 10;
+                    hand.pin.disabled = true;
+                    hand.value = 50;
+
+                    hand.events.on("propertychanged", function (ev) {
+                        range0.endValue = ev.target.value;
+                        range1.value = ev.target.value;
+                        label.text = axis2.positionToValue(hand.currentPosition).toFixed(1);
+                        axis2.invalidate();
+                    });
+
+                    setInterval(function () {
+                        var value = Math.round(Math.random() * 100);
+                        var animation = new am4core.Animation(hand, {
+                            property: "value",
+                            to: value
+                        }, 1000, am4core.ease.cubicOut).start();
+                    }, 2000);
+
+                });
+                chart.responsive.enabled = true;
+                 // end am4core.ready()
+            </script>
+
+            <!-- HTML -->
+            <div id="chartdiv"></div>
+
+            <!-- gauge ends -->
+            <h1 style="font-size: 90px; color: #fff; top:40px;">
+                <center>VS</center>
+            </h1>
+            <!-- ---------------------SPACING-------------------------- -->
+            <p style="color: rgb(8, 8, 87);">.</p>
+            <p style="color: rgb(8, 8, 87);">.</p>
+            <p style="color: rgb(8, 8, 87);">.</p>
+            <p style="color: white; font-size: large; margin-top: 10px;"><u>OUR PREDICTIONS</u>:-</p>
+            <p style="color: rgb(8, 8, 87);">.</p>
+            <p style="color: rgb(8, 8, 87);">.</p>
+            <p style="color: rgb(8, 8, 87);">.</p>
+            <p style="color: rgb(8, 8, 87);">.</p>
+            <p style="color: black;">.</p>
+            <!-- ---------------------SPACING-------------------------- -->
+
+            <style>
+                .mySlides {
+                    display: none;
+                }
+            </style>
+
+            <center>
+                <div class="head" style=" width: 40%;
+    height: 500px;
+    background-color: #a4508b;
+    background-image: linear-gradient(326deg, #a4508b 0%, #5f0a87 74%);
+    width: 600px; height: 450px; border-radius: 10px; cursor: pointer; max-width:100%">
+                    <img class="mySlides" src="nowcast.png" style="width:100%">
+                    <img class="mySlides" src="2.png" style="width:100%">
+                    <!-- <img class="mySlides" src="img/team/team-2.jpg" style="width:100%"> -->
+                </div>
+            </center>
+
+            <script>
+                var myIndex = 0;
+                carousel();
+
+                function carousel() {
+                    var i;
+                    var x = document.getElementsByClassName("mySlides");
+                    for (i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";
+                    }
+                    myIndex++;
+                    if (myIndex > x.length) { myIndex = 1 }
+                    x[myIndex - 1].style.display = "block";
+                    setTimeout(carousel, 1000); // Change image every 1 seconds
+                }
+            </script>
+            <!-- ---------------------SPACING-------------------------- -->
+            <p style="color: rgb(8, 8, 87);">.</p>
+            <p style="color: rgb(8, 8, 87);">.</p>
+            <p style="color: rgb(8, 8, 87);">.</p>
+            <p style="color: rgb(8, 8, 87);">.</p>
+            <!-- ---------------------SPACING-------------------------- -->
+
+</body>
+
+</html>
